@@ -1,4 +1,10 @@
 <script setup>
+import ProductList from '@/components/ProductList.vue'
+import SearchInput from '@/components/SearchInput.vue'
+import { computed, provide, ref } from 'vue'
+
+const currency = 'VND'
+
 const products = ref([
   {
     id: 1,
@@ -25,12 +31,27 @@ const products = ref([
     category: 'Keyboard',
   },
 ])
+const search = ref('')
+const cart = ref([])
+
+const filteredProducts = computed(() => {
+  if (!search.value) return products.value
+  return products.value.filter((p) => p.name.toLowerCase().includes(search.value.toLowerCase()))
+})
+
+const handleAddProduct = (id) => {
+  const product = products.value.find((p) => p.id === id)
+  if (!product) return
+  cart.value = [...cart.value, product]
+}
+provide('currency', currency)
 </script>
 <template>
   <div class="product">
     <h1>Product Browser</h1>
     <div class="product-search">
-        <input type="text" placeholder="Search product... "/>
+      <SearchInput v-model.trim="search" type="text" placeholder="Search product... " />
     </div>
+    <ProductList :products="filteredProducts" @add-to-cart="handleAddProduct" />
   </div>
 </template>

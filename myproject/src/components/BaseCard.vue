@@ -1,0 +1,14 @@
+<template>
+  <div class="card">
+    <header>
+      <slot name="header" />
+    </header>
+
+    <slot />
+
+    <footer>
+      <slot name="footer" />
+    </footer>
+    <br />
+  </div>
+</template>
