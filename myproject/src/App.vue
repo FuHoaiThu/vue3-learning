@@ -1,11 +1,9 @@
-<script setup></script>
+<script setup>
+import Greeting from './components/Greeting.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <Greeting />
 </template>
 
 <style scoped></style>
