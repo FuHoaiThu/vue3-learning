@@ -1,11 +1,15 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import LifecycleDemo from './components/LifecycleDemo.vue'
+
+const isShow = ref(false)
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div>
+    <LifecycleDemo v-if="isShow" />
+    <button @click="isShow = !isShow">Toggle</button>
+  </div>
 </template>
 
 <style scoped></style>
