@@ -27,7 +27,13 @@ const searchProducts = (keyword, category, page) => {
   console.log(`Searching: keyword="${keyword}", category="${category}", page=${page}`)
 }
 
-watch([keyword, category, page], ([newKeyword, newCategory, newPage], [oldKeywor, oldCategory, oldPage]) => {
-  searchProducts(newKeyword, newCategory, newPage)
-})
+watch(
+  [keyword, category, page],
+  ([newKeyword, newCategory, newPage], [oldKeywor, oldCategory, oldPage]) => {
+    searchProducts(newKeyword, newCategory, newPage)
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
