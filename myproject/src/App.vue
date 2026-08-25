@@ -1,11 +1,12 @@
-<script setup></script>
+<script setup>
+import CountDemo from './components/CountDemo.vue'
+import PaginationPage from './components/PaginationPage.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <CountDemo />
+  <hr />
+  <PaginationPage />
 </template>
 
 <style scoped></style>
