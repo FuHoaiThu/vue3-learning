@@ -7,11 +7,16 @@ export const useProductStore = defineStore('product', () => {
   const loading = ref(false)
   const error = ref(null)
 
-  const fetchProducts = async () => {
-    loading.value = true
+  const fetchProducts = async (searchQuery = null) => {
+    let url = 'https://dummyjson.com/products'
+    if (searchQuery === null) {
+      loading.value = true
+    } else {
+      url += `/search?q=${encodeURIComponent(searchQuery)}`
+    }
     error.value = null
     try {
-      const response = await fetch('https://dummyjson.com/products')
+      const response = await fetch(url)
       if (!response.ok) {
         throw new Error('Failed to fetch products')
       }
