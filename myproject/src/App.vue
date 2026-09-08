@@ -6,8 +6,7 @@ import ProductList from './components/ProductList.vue';
 <template>
   <h1>API and Fetch Data</h1>
   <div>
-    <h2>Mini 1:</h2>
-    <ProductList />
+    <RouterView></RouterView>
   </div>
 </template>
 
