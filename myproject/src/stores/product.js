@@ -6,8 +6,14 @@ export const useProductStore = defineStore('product', () => {
   const product = ref(null)
   const loading = ref(false)
   const error = ref(null)
+  let controller = null
 
-  const fetchProducts = async (searchQuery = null) => {
+  const fetchProducts = async (searchQuery = null, options = {}) => {
+    if (controller) {
+      controller.abort()
+    }
+    controller = new AbortController()
+
     let url = 'https://dummyjson.com/products'
     if (searchQuery === null) {
       loading.value = true
@@ -16,13 +22,16 @@ export const useProductStore = defineStore('product', () => {
     }
     error.value = null
     try {
-      const response = await fetch(url)
+      const response = await fetch(url, { signal: controller.signal })
       if (!response.ok) {
         throw new Error('Failed to fetch products')
       }
       const data = await response.json()
       products.value = data.products
     } catch (err) {
+      if (err.name === 'AbortError') {
+        return
+      }
       error.value = err.message
     } finally {
       loading.value = false

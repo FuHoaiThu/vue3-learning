@@ -24,7 +24,7 @@
 import { useProductStore } from '@/stores/product'
 import { storeToRefs } from 'pinia'
 import { onMounted, ref, watch } from 'vue'
-
+import { debounce } from 'lodash'
 const productStore = useProductStore()
 const { products, loading, error } = storeToRefs(productStore)
 const { fetchProducts } = productStore
@@ -35,7 +35,10 @@ onMounted(() => {
 
 const searchQuery = ref('')
 
+const handleSearch = debounce(() => {
+  fetchProducts(searchQuery.value)
+}, 300)
 watch(searchQuery, (newQuery) => {
-  fetchProducts(newQuery)
+  handleSearch(newQuery)
 })
 </script>
