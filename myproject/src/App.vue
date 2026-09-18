@@ -1,11 +1,19 @@
-<script setup></script>
+<script setup>
+import ProductCard from './components/ProductCard.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <section>
+    <h1>Vitest</h1>
+    <div>
+      <h2>Mini 1: Product Card</h2>
+      <ProductCard />
+      <hr />
+    </div>
+    <div>
+      <h2>Mini 1: Counter</h2>
+    </div>
+  </section>
 </template>
 
 <style scoped></style>
